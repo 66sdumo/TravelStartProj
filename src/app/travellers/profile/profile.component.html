@@ -1,0 +1,98 @@
+
+
+<div class="jumbotron"  >
+  <div class="row" *ngIf="userClaims">
+    <h1 class="display-10" > {{userClaims.Title}}  {{userClaims.Lname}} {{userClaims.Fname}} Profile</h1>
+   
+  </div>
+</div>
+
+
+<h2>View or Update your profile</h2>
+<hr/>
+
+
+<table class="table table-sm table-hover">
+  <tr *ngFor="let list of travellerservice.travellerList">
+    <td> {{list.Title}}  {{list.Username}} {{list.Lname}} {{list.Fname}}  {{list.Email}}   <button  class="btn btn-lg btn-block btn-info">Edit</button></td>
+  </tr>
+</table>
+
+
+
+<form class="prof-form" #profForm="ngForm" (ngSubmit)="onSubmit(profForm)">
+    <div class=" container" style="text-align : centre">
+
+        <div class="form-row">
+            <div class="form-group  col-md-8">
+              User Id
+              <input type = "text"  class="form-control" name="Id" [(ngModel)]="profile[0].Id"  placeholder="User Id" >
+            <!--  <div class="validation-error" *ngIf = " Username.invalid && Username.touched">Required</div> -->
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group  col-md-8">
+              <label>Username</label>
+              <input type = "text"  class="form-control" name="Username" [(ngModel)]="claims.Username"  placeholder="Username" >
+            <!--  <div class="validation-error" *ngIf = " Username.invalid && Username.touched">Required</div> -->
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group  col-md-8">
+                <label>Title</label>
+              <input type = "text"  class="form-control" name="Title" [(ngModel)]="claims.Title" placeholder="Title" >
+            <!--  <div class="validation-error" *ngIf = " Title.invalid && Title.touched">Required</div>-->
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group  col-md-8">
+                <label>First Name</label>
+              <input type = "text"  class="form-control" name="Fname" [(ngModel)]="claims.Fname" placeholder="First Name" >
+             <!-- <div class="validation-error" *ngIf = " Fname.invalid && Fname.touched">Required</div> -->
+            </div>
+          </div>
+    
+          <div class="form-row">
+            <div class="form-group  col-md-8">
+                <label>Last Name</label>
+              <input type = "text"  class="form-control" name="Lname" [(ngModel)]="claims.Lname" placeholder="Surname" >
+             <!-- <div class="validation-error" *ngIf = " Lname.invalid && Lname.touched">Required</div> -->
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group  col-md-8">
+                <label>Email</label>
+              <input type = "text"  class="form-control" name="Email" [(ngModel)]="claims.Email" placeholder="Email" >
+             <!-- <div class="validation-error" *ngIf = " Email.invalid && Email.touched">Required</div>-->
+            </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group  col-md-8">
+                  <label>Password</label>
+                <input type = "text"  class="form-control" name="Password" [(ngModel)]="profile[0].Password"  placeholder="Password" >
+              <!--  <div class="validation-error" *ngIf = " Username.invalid && Username.touched">Required</div> -->
+              </div>
+            </div>
+  
+       
+  
+  
+          <div class =" form-row">
+            <div class="form-group  col-md-8">
+              <button type="submit" class="btn btn-lg btn-block btn-info">Update
+                 </button> 
+          </div>
+  
+      </div>
+    </div>
+    
+  </form>
+
+  
+  
+  
+  

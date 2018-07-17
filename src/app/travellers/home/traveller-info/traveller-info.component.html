@@ -1,0 +1,250 @@
+
+ <h4>Who's travelling?</h4>
+
+
+<form>
+ <h3>Booking Summary <i class="fas fa-list-ul"></i></h3>
+
+ <hr class="separator">
+<div class="form-row">
+  
+ <div class="col-md-4">
+    <thead>
+        <tr>
+
+          <th scope="col">Depart</th>
+    
+        </tr>
+      </thead>
+    <table class="table table-hover">
+      <tr>
+          <td>{{flytDep.Airline}}</td>
+          <td>{{flytDep.Time}}</td>
+          <td>{{flytDep.Class}}</td>
+          <td>R{{flytDep.Price}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-md-4">
+      <thead>
+          <tr>
+  
+            <th scope="col">Return</th>
+      
+          </tr>
+        </thead>
+      <table class="table table-hover">
+        <tr>
+            <td>{{retFlyt.Airline}}</td>
+            <td>{{retFlyt.Time}}</td>
+            <td>{{retFlyt.Class}}</td>
+            <td>R{{retFlyt.Price}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-md-4">
+        <thead>
+            <tr>
+    
+              <th scope="col">Total Amount</th>
+        
+            </tr>
+          </thead>
+        <table class="table table-hover">
+          <tr>
+              <td>R{{tot}}</td>
+              
+          </tr>
+        </table>
+      </div>
+
+  </div>
+  <hr class="separator">
+</form>
+<hr class="separator">
+<form  *ngIf = "!isTrue">
+    <div>
+        <h1>Choose Seat Side</h1><p>(Click to choose seat before entering your detatils)</p>
+
+        <hr class="separator">
+      </div>
+
+    <div >    
+        <table  class="form-group  col-md-4" >
+          <tr>
+           
+            <td><button type="submit" class="round-button" (click)="onLeft()"></button><label>Left</label></td>
+            <td><button type="submit" class="round-button" (click)="onMiddle()"></button><label>Middle</label></td>
+            <td><button class="round-button" (click)="onRight()"></button><label>Right</label></td>
+            
+          </tr>
+        </table>
+      </div>
+
+
+</form>
+
+<hr class="separator">
+
+  
+<form    *ngIf = "!isTrue" class="trav-form"  #travForm="ngForm" (ngSubmit)="onSubmit(travForm)" >
+  <div  style="text-align : centre">
+    
+        <h3>Traveller( {{numTrav}} )</h3><p>(Choose seat above before filling in)</p>
+
+        <hr class="separator">  
+      
+          <div class="form-row">
+              <div class="form-group  col-md-4">
+                  <select  type = "text"  class="form-control" name="Title" #Title="ngModel" [(ngModel)]="detailservice.trav.Title" placeholder="Title" required >  
+                    <option > Mr  </option>
+                    <option > Ms  </option>
+                    <option > Mrs  </option>   
+                  </select>
+                </div>
+          
+
+        
+          <div class="form-group  col-md-4">
+              <input  id="Fname" type = "text"  class="form-control" name="Fname" #Fname="ngModel" [(ngModel)]="detailservice.trav.Fname" placeholder="First Name" required>
+              <div class="validation-error" *ngIf = " Fname.invalid && Fname.touched">Required</div> 
+          </div>
+          </div>
+
+        
+
+          <div class="form-row">
+          <div class="form-group  col-md-4">
+            <input id="Surname" type = "text"  class="form-control" name="Surname" #Surname="ngModel" [(ngModel)]="detailservice.trav.Surname" placeholder="Surname" required>
+            <div class="validation-error" *ngIf = " Surname.invalid && Surname.touched">Required</div> 
+          </div>
+
+          <div class="form-group  col-md-4">
+              <input id="Email" type = "text"  class="form-control" name="Email" #Email="ngModel" [(ngModel)]="detailservice.trav.Email" placeholder="Email(Optional)" [pattern]="emailPattern">
+              <div class="validation-error" *ngIf = " Email.invalid && Email.errors.pattern">Invalid Email</div>
+          </div>
+          </div>
+
+
+         
+        <div class="form-row">
+          <div class="form-group  col-md-4">
+            <input id="DOB" type = "text" class="form-control"  name="DOB" #DOB="ngModel" [(ngModel)]="detailservice.trav.DOB " placeholder="Date Of Birth" required>
+            <div class="validation-error" *ngIf = " DOB.invalid && DOB.touched">Required</div> 
+          </div>
+
+          <div class="form-group  col-md-4">
+              <input id="DOB" type = "text" class="form-control"  name="sitNo"  [(ngModel)]="sitNo.sitNo" placeholder="SitNo" readonly required>
+              <div class="validation-error" *ngIf = " sitNo.invalid && sitNo.touched">Required</div> 
+            </div>
+          </div>
+
+         <div class="form-row">
+          <div class="form-group  col-md-8">
+              <input id="Id" type = "text" class="form-control"  name="Id"  [(ngModel)]="IdTrav" placeholder="User Id" readonly required>
+              
+            </div>
+          </div>
+         
+
+        <div class="form-row">
+          <div class="form-group  col-md-4">
+            <button [disabled]="!travForm.valid"  type="submit" class="btn btn-lg btn-block btn-info" >Continue</button> 
+          </div>
+    </div>
+
+    
+  </div>
+    
+
+</form>
+
+
+   
+<form class="cntacts-form"  #conform ="ngForm" (ngSubmit)="submit(conform)" >
+  <div class=" container" style="text-align : centre">
+
+          <h3>Contact Details <i class="fas fa-phone-square"></i></h3>
+          <p>(Do not fill in until you are done filling in the information above)</p>
+
+          <hr class="separator">
+      
+
+          <div class="form-row">
+              <div class="form-group  col-md-4">
+                  <select id="Etitle" type = "text"  class="form-control" name="Title" #Title="ngModel" [(ngModel)]="detailservice.cntcts.Title" placeholder="Title" required >  
+                    <option > Mr  </option>
+                    <option > Ms  </option>
+                    <option > Mrs  </option>   
+                  </select>
+                </div>
+         
+
+
+          <div class="form-group  col-md-4">
+              <input  id="EFname" type = "text"  class="form-control" name="Fname" #Fname="ngModel" [(ngModel)]="detailservice.cntcts.Fname" placeholder="First Name" required>
+              <div class="validation-error" *ngIf = " Fname.invalid && Fname.touched">Required</div> 
+          </div>
+          
+
+        </div>
+
+       
+        
+  
+        <div class="form-row">
+
+          <div class="form-group  col-md-4">
+            <input id="ESurname" type = "text"  class="form-control" name="Surname" #Surname="ngModel" [(ngModel)]="detailservice.cntcts.Lname" placeholder="Surname" required>
+            <div class="validation-error" *ngIf = " Surname.invalid && Surname.touched">Required</div> 
+          </div>
+
+          <div class="form-group  col-md-4">
+              <input id="Eemail" type = "text"  class="form-control" name="Email" #Email="ngModel" [(ngModel)]="detailservice.cntcts.Email" placeholder="Email" required [pattern]="emailPattern">
+              <div class="validation-error" *ngIf = " Email.invalid && Email.errors.pattern">Invalid Email</div> 
+            </div>
+          
+
+        </div>
+
+      
+        
+  
+        <div class="form-row">
+
+          <div class="form-group  col-md-4">
+            <input type = "text" class="form-control" name="DialCode" #DialCode="ngModel" [(ngModel)]="detailservice.cntcts.DialCode " placeholder="Dial Code" required>
+            <div class="validation-error" *ngIf = " DialCode.invalid && DialCode.touched">Required</div> 
+          </div>
+
+
+          <div class="form-group  col-md-4 ">
+              <input type = "text" class="form-control" name="MobileNo" #MobileNo="ngModel" [(ngModel)]="detailservice.cntcts.MobileNo "  (keypress)="keyPress($event)" minlength=10 maxlength=10 placeholder="Mobile Number" required>
+              <div class="validation-error" *ngIf = " MobileNo.invalid && MobileNo.touched">invalid mobile number</div> 
+          </div>
+          
+
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group  col-md-8">
+                <input id="Id" type = "text" class="form-control"  name="Id"  [(ngModel)]="IdCntct" placeholder="User Id" readonly required>
+                
+              </div>
+            </div>
+
+          
+      
+        
+
+        <div class =" form-row">
+          <div class="form-group  col-md-4">
+            <button [disabled]="!conform.valid"  type="submit" class="btn btn-lg btn-block btn-info" (click)="onClick()" >Continue</button> 
+          </div>
+        </div>
+
+  </div>
+</form>
+

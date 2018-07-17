@@ -1,0 +1,54 @@
+
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+
+
+
+<ul class="nav nav-tabs">
+
+  <li >
+   
+    <a href="#" class="navbar-left"><img src="assets/travelstart.png"></a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link " style="color:gray" href="travellers/home">Flights</a>
+  </li>
+ 
+  <li class="nav-item">
+    <a class="nav-link " style="color:gray"  href="travellers/hotel">Hotel<i class="fas fa-times"></i></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" style="color:gray"  href="travellers/car">Cars<i class="fas fa-times"></i></a>
+  </li>
+  <li class="nav-item" > 
+    <a class="nav-link" style="color:gray"  href="travellers/admin">Admin Panel</a>
+  </li>
+  <li class="nav-item dropdown "  >
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown"style="color:gray"  href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i>Account</a>
+  
+    <div class="dropdown-menu" *ngIf="login==true" >
+      <a class="dropdown-item" routerLink='travellers/sign-in'>Sign in</a>    
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" routerLink='travellers/traveller'>Sign up</a>
+    </div>
+  
+
+
+    <div class="dropdown-menu" >
+      <a class="dropdown-item" routerLink='travellers/profile'>DashBoard</a>    
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" routerLink='travellers/home'(click)="onClear()">Sign out</a>
+    </div>
+
+  </li>
+</ul>
+
+
+
+
+<div>
+  <router-outlet></router-outlet>
+</div>
+

@@ -1,0 +1,25 @@
+
+
+      .Flight {
+       
+        padding: 30px;
+        border-radius: 6px;
+      }
+
+    .jumbotron
+    {
+      background-color :whitesmoke;
+      background-image:  url(assets/plane2.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size:  100%;
+    }
+
+
+     label
+     {
+      color:lightslategrey(126, 240, 242);
+      font-weight: bold;
+      display: block;
+      float: centre;
+      }

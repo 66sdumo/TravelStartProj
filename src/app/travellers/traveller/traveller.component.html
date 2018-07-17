@@ -1,0 +1,91 @@
+
+
+<div class="jumbotron"  >
+    <h1 class="display-5">Sign Up Today</h1>
+  </div>
+
+
+  <h1>Sign Up to fully enjoy our services <i class="fas fa-box-open"></i></h1>
+<hr/>
+<form class="emp-form" #travellerForm="ngForm"  (ngSubmit)="onSubmit(travellerForm)" >
+  <div class="container">
+
+      <label>Username</label>
+        <div class="form-row">
+          <div class="form-group  col-md-8">
+            <input type = "text"  class="form-control" name="Username" #Username="ngModel" [(ngModel)]="User.Username" placeholder="Username" required>
+            <div class="validation-error" *ngIf = " Username.invalid && Username.touched">Required</div> 
+          </div>
+        </div>
+
+        <label>Title</label>
+        <div class="form-row">
+        <div class="form-group  col-md-8">
+            <select  type = "text"  class="form-control" name="Title" #Title="ngModel" [(ngModel)]="User.Title" placeholder="Title" required > 
+              <option > Mr  </option>
+              <option > Ms  </option>
+              <option > Mrs  </option>   
+            </select>
+          </div>
+          </div>
+
+          <label>First Name</label>
+        <div class="form-row">
+          <div class="form-group  col-md-8">
+            <input type = "text"  class="form-control" name="Fname" #Fname="ngModel" [(ngModel)]="User.Fname" placeholder="First Name" required>
+            <div class="validation-error" *ngIf = " Fname.invalid && Fname.touched">Required</div> 
+          </div>
+        </div>
+  
+        <label>Last Name</label>
+        <div class="form-row">
+          <div class="form-group  col-md-8">
+            <input type = "text"  class="form-control" name="Lname" #Lname="ngModel" [(ngModel)]="User.Lname" placeholder="Surname" required>
+            <div class="validation-error" *ngIf = " Lname.invalid && Lname.touched">Required</div> 
+          </div>
+        </div>
+
+        <label>Email</label>
+        <div class="form-row">
+          <div class="form-group  col-md-8">
+            <input type = "text"  class="form-control" name="Email" #Email="ngModel" [(ngModel)]="User.Email" placeholder="Email" required [pattern]="emailPattern">
+           <div class="validation-error" *ngIf = " Email.invalid && Email.errors.pattern">Invalid Email</div>
+          </div>
+        </div>
+
+        <label>Password</label>
+        <div class="form-row">
+          <div class="form-group  col-md-8 ">
+            <input type = "text" class="form-control" name="Password" #Password="ngModel" [(ngModel)]="User.Password " placeholder="Password" required minlength="6">
+            <div class="validation-error" *ngIf = " Password.invalid && Password.touched">Required</div>
+            <div class="validation-error" *ngIf ="Password.invalid && Password.errors.minlength">Password must be atleast 6 characters</div>
+          </div>
+        </div>
+
+        <div class="form-row" *ngIf="roles">
+            <div class="form-group  col-md-8 ">
+        
+            <div *ngFor =" let item of roles;let i = index">
+                <label class="container1 " [for]="'roles-'+i"> {{item.Name}}
+              <input  class="form-control" type="checkbox" [id]="'roles-'+i" value="{{item.Id}}" [checked]="item.selected" (change)="updateSelectedRoles(i)" >
+              <span class="checkmark"></span>
+             </label>
+            </div>
+       
+          </div>
+        </div>
+
+
+ 
+
+        <div class =" form-row">
+          <div class="form-group  col-md-8">
+            <button [disabled]="!travellerForm.valid" type="submit" class="btn btn-lg btn-block btn-info">Sign Up </button> 
+        </div>
+
+    </div>
+  </div>
+  
+</form>
+
+

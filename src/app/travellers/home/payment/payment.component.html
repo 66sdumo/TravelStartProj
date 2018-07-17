@@ -1,0 +1,135 @@
+
+
+<h3>Payment Details</h3>
+
+<form>
+    
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link "   (click)="onClick1()">3D Secure Credit Card</a>
+    </li>
+   
+    <li class="nav-item">
+      <a class="nav-link "(click)="onClick2()">3D Secure Cheque Card </a>
+    </li>
+   
+  </ul>
+
+
+</form>
+
+<form class="payForm" #payForm ="ngForm" (ngSubmit)="onSubmit(payForm)" >
+  <div class=" container" style="text-align : centre">
+
+<p> {{type}}</p>
+        
+
+      
+
+        <div class="form-row">
+          <div class="form-group  col-md-8">
+            <input id="cardno" type = "text"  class="form-control" name="Cardno" #Cardno="ngModel" [(ngModel)]="detailservice.pay.Cardno" placeholder="Card Number"  (keypress)="keyPressCardNo($event)" minlength=19 maxlength=19 required>
+            <div class="validation-error" *ngIf = " Cardno.invalid && Cardno.touched">Required</div> 
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group  col-md-8">
+            <input  id="cardname" type = "text"  class="form-control" name="Cardname"  #Cardname="ngModel" [(ngModel)]="detailservice.pay.Cardname"  placeholder="Name of Card" required> 
+            <div class="validation-error" *ngIf = " Cardname.invalid && Cardname.touched">Required</div>
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group  col-md-8">
+            <input id="expiry" type = "text"  class="form-control" name="Expiry"  #Expiry="ngModel" [(ngModel)]="detailservice.pay.Expiry"  placeholder="Expiry Date" required> 
+            <div class="validation-error" *ngIf = " Expiry.invalid && Expiry.touched">Required</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group  col-md-6">
+            <input id="cvc" type = "text"  class="form-control" name="CVC"  #CVC="ngModel" [(ngModel)]="detailservice.pay.CVC"  placeholder="Enter CVC number" (keypress)="keyPressCvc($event)" minlength=3 maxlength=4> 
+          </div>
+        </div>
+
+        <hr class="separator">
+  
+        <div class="form-row">
+         
+          <div class="form-group  col-md-8 ">
+            <label>Address line 1</label>
+            <input id="Address1" type = "text" class="form-control"  name="Address1"  #Address1="ngModel" [(ngModel)]="detailservice.pay.Address1"  placeholder="e.g:1-2-3 blue street, XXX town" > 
+          
+          </div>
+        </div>
+
+        <div class="form-row">
+          
+            <div class="form-group  col-md-8 ">
+              <label>Address line 2</label>
+              <input id="Address2" type = "text" class="form-control"  name="Address2"  #Address2="ngModel" [(ngModel)]="detailservice.pay.Address2"  placeholder="e.g:Apartment, suite, unit, building, floor " >  
+          
+            </div>
+          </div>
+
+          <div class="form-row">
+             
+              <div class="form-group  col-md-4 ">
+                <label>Postal    </label>
+                <input id="postal" type = "text" class="form-control"  name="Postal"  #Postal="ngModel" [(ngModel)]="detailservice.pay.Postal"  placeholder="Postal Code" >
+            
+              </div>
+            </div>
+
+            <div class="form-row">
+              
+                <div class="form-group  col-md-4 ">
+                  <label>City</label>
+                  <input id="City" type = "text" class="form-control"  name="City"  #City="ngModel" [(ngModel)]="detailservice.pay.City"  placeholder="City"> 
+                </div>
+              
+
+              
+                
+                  <div class="form-group  col-md-6">
+                    <label>Country</label>
+                    <input id="country" type = "text" class="form-control"  name="Country"  #Country="ngModel" [(ngModel)]="detailservice.pay.Country"  placeholder="Country"> 
+                  </div>
+                </div>
+
+                <div class="form-row">
+                    
+                    <div class="form-group  col-md-3 ">
+                      <label>Dial Code</label>
+                      <input id="dialcode" type = "text" class="form-control"  name="Dialcode"  #Dialcode="ngModel" [(ngModel)]="detailservice.pay.Dialcode"   placeholder="Dial Code (eg.+27)"> 
+                    </div>
+                
+
+                  
+                     
+                      <div class="form-group  col-md-4 ">
+                        <label>Contact No.</label>
+                        <input id="contactno" type = "text" class="form-control"  name="Contactno"   #Contactno="ngModel" [(ngModel)]="detailservice.pay.Contactno"  placeholder="Contact Number"  (keypress)="keyPress($event)" minlength=10 maxlength=10 required> 
+                        <div class="validation-error" *ngIf = " Contactno.invalid && Contactno.touched">Required</div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group  col-md-8">
+                            <input id="Id" type = "text" class="form-control"  name="Id"  [(ngModel)]="userId[0].Id" placeholder="User Id" readonly required>
+                            
+                          </div>
+                        </div>
+
+        <div class =" form-row">
+          <div class="form-group  col-md-4">
+            <button  [disabled]="!payForm.valid"  type="submit" class="btn btn-lg btn-block btn-info" (click)="onClick()" >Book</button> 
+          </div>
+        </div>
+       
+  </div>
+  
+</form>

@@ -1,0 +1,16 @@
+h3
+{
+    text-align: left;
+    color:whitesmoke;
+    font-size: 60px;
+    font-family: "Times New Roman Header";
+    background-color:grey;
+    border-radius: 15px;
+    height: 160px;
+    padding: 14px 2%;
+
+    background-image:  url(assets/pay.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% ;
+}

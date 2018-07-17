@@ -1,0 +1,100 @@
+
+
+<div class="jumbotron"  style="text-align:center;">
+    <h1 class="display-10">Search and Book Cheap Flights</h1>
+  </div>
+  
+      <!-- (ngSubmit) ="test()" (ngSubmit)="searchFlight(dept)"  (ngSubmit)="onSubmit(dept,model)"-->
+      <span class="glyphicon glyphicon-menu-up" aria-hidden="false"></span>
+     
+
+  <form class="Flight"  #fsearch="ngForm"  (ngSubmit)="onSubmit(dept,model,airportD)" (ngSubmit)="onReturn(rturn,rturnDate,airportR)" >
+    <h2>Departure  <i  class="fas fa-plane-departure"></i></h2> 
+    <hr/>
+    <label>Departure Airport</label>
+    <div class="select" >    
+        <div class="form-row">
+          <div class="form-group  col-md-8">
+            <select id="dept" class="form-control" name="selectedDept" [(ngModel)]="airportD" >  
+              <option>Enter Departure Airport</option>
+              <option   *ngFor = "let airportD of travellerservice.airportList " [ngValue]="airportD"> {{airportD.airportName}}  </option>    
+            </select>
+          </div>
+         
+          <div class="form-group  col-md-6">
+              <label>Choose Departure Date</label>
+           <!-- <div class="form-control">-->
+                <div class="input-group">
+                    <input id="deptDate" class="form-control" placeholder="Choose departure date"
+                           name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-lg btn-block btn-info"  (click)="d.toggle()" type="button">
+                        <i class="far fa-calendar-alt"></i>
+                      </button>
+                    </div>
+                 <!-- </div>  -->
+              </div>
+            </div>
+               
+           
+        </div>
+        <h2>Return  <i class="fas fa-plane-arrival"></i></h2>
+        <hr/>
+        <label>Return Airport</label>
+      <div class="form-row">
+        <div class="form-group  col-md-8">
+         <select id="rturn" class="form-control" name="selectedRet"  [(ngModel)]="airportR"  >
+                <option>Enter Arrival Airport</option>  
+                <option   *ngFor = "let airportR of travellerservice.airportList" [ngValue]="airportR"> {{airportR.airportName}} </option>    
+            </select>
+        </div>
+        
+        
+            
+       
+      <div class="form-group  col-md-6">
+          <label>Choose Return Date</label>
+      <!--  <div class="form-control"> -->
+          <div class="input-group">
+            <input  id="rturnDate"  class="form-control" placeholder="Choose return date"
+                   name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-lg btn-block btn-info"  (click)="d2.toggle()" type="button">
+                <i class="far fa-calendar-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+    <!--  </div>-->
+      </div>
+      <h2>Travellers  <i class="fas fa-users"></i></h2>
+        <hr/>
+       
+        <label>How many people are travelling.?.  </label>
+        <div class="form-row">
+          <div class="form-group  col-md-8">
+          <div class="noTravellers" style="text-align:centre">
+              <input id="noTravellers" name="noTravellers" #noTravellers="ngModel" ngModel class="form-control" type="text"  placeholder="Travellers" required >
+             <div class="validation-error" *ngIf = " noTravellers.invalid && noTravellers.touched">Required</div>
+          </div>
+        </div>
+      </div>
+      <hr/>
+
+     
+
+  
+        
+        <button [disabled]="!fsearch.valid" type="submit"  class="btn btn-lg btn-block btn-info" >Search</button>
+        </div>
+  </form>
+  
+
+
+  <div class="row">
+    <div class="col-md-6">
+  
+     <router-outlet></router-outlet>
+      
+    </div>
+  </div>

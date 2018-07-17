@@ -1,0 +1,163 @@
+<div class="jumbotron"  style="text-align:center;">
+  <h1 class="display-10"></h1>
+</div>
+
+
+<div class="row">
+
+  <div class="col-md-4">
+      <h1>Departure</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+
+          <th scope="col">Airport</th>
+          <th scope="col">Airline</th>
+          <th scope="col">Time</th>
+          <th scope="col">Classs</th>
+          <th scope="col">Price</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row" *ngFor="let result of viewresult">
+
+
+          <td>{{result.Airport}}</td>
+          <td>{{result.Airline}}</td>
+          <td>{{result.Time}}</td>
+          <td>{{result.Class}}</td>
+          <td>R{{result.Price}}</td>
+
+          <td>
+            <input type="radio" name="depDetails" (click)="depSelect(result)">
+          </td>
+         
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="col-md-4">
+      <h1>Return</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+
+          <th scope="col">Airport</th>
+          <th scope="col">Airline</th>
+          <th scope="col">Time</th>
+          <th scope="col">Classs</th>
+          <th scope="col">Price</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr font size="2" scope="row" *ngFor="let rturn of returnFlight">
+
+
+          <td>{{rturn.Airport}}</td>
+          <td>{{rturn.Airline}}</td>
+          <td>{{rturn.Time}}</td>
+          <td>{{rturn.Class}}</td>
+          <td>R{{rturn.Price}}</td>
+
+          <td>
+            <input type="radio" name="retDetails" (click)="retSelect(rturn)" >
+          </td>
+          
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+   
+  
+
+
+
+  <div *ngIf = "!view" class="form-group  col-md-4">
+      <h1>Summary</h1>
+    <button type="submit" class="btn btn-lg btn-block btn-info" (click)="onView() " >View Summary</button>
+   
+  </div>
+
+
+
+
+<form *ngIf ="view">
+  <div class="col-md-4">
+      <thead>
+          <tr>
+  
+            <th scope="col">Departure</th>
+     
+        
+          </tr>
+        </thead>
+      <table class="table table-hover">
+        <tr>
+          <td></td>
+          <td>{{result.Airline}}</td>
+          <td>{{result.Time}}</td>
+          <td>{{result.Class}}</td>
+          <td id="depPrice" >{{result.Price}}</td>
+        </tr>
+      </table>
+  </div>
+
+  <div class="col-md-4">
+      <thead>
+          <tr>
+  
+            <th scope="col">Return</th>
+          
+      
+          </tr>
+        </thead>
+      <table class="table table-hover">
+        <tr>
+          <td></td>
+          <td>{{selected.Airline}}</td>
+          <td>{{selected.Time}}</td>
+          <td>{{selected.Class}}</td>
+          <td id="retPrice">{{selected.Price}}</td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class="col-md-4">
+        <thead>
+            <tr>
+    
+              <th scope="col">Total Price</th>
+            
+    
+            </tr>
+          </thead>
+        <table class="table table-hover">
+          <tr>
+          <td id="totPrice">R{{amnt}}</td>
+          </tr>
+
+        </table>
+    </div>
+
+
+
+
+    <th>
+        <div class="form-group  col-md-12">
+          <button type="submit" class="btn btn-lg btn-block btn-info" (click)="onContinue()" >Continue</button>
+        </div>  
+        </th>
+      
+</form>
+
+
+
+  

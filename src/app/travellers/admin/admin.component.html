@@ -1,0 +1,127 @@
+<div class="jumbotron"  style="text-align:center">
+    <div class="row">
+      <h1 class="display-10" >Admin Panel</h1>
+    </div>
+</div>
+
+
+
+<form class="prof-form">
+    <div class=" container" style="text-align : centre">
+     
+        <div class="form-row">
+            <div class="form-group  col-md-6">
+              <input id="name" type = "text"  class="form-control" name="username"   placeholder="Username" >
+           
+            </div>
+
+             <div class="form-group  col-md-6">
+                  <input id="userId" type = "text"  class="form-control" name="UserId"   placeholder="Enter User Id" >
+                
+             </div>
+          </div>
+
+        <div class =" form-row">
+            <div class="form-group  col-md-6">
+              <button type="submit" class="btn btn-lg btn-block btn-info" (click)="onFind()">Find
+                 </button> 
+          </div>
+
+          <div class="form-group  col-md-6">
+            <button type="submit" class="btn btn-lg btn-block btn-info" (click)="onDelete()">Delete
+               </button> 
+        </div>
+
+
+        </div>
+
+       
+
+       
+
+        
+
+    </div>
+   
+    <hr class="separator">
+</form>
+
+<form class="userForm" #userForm= "ngForm" (ngSubmit)="onSubmit(userForm)" >
+    <div class=" container" style="text-align : centre">
+
+        <div class="form-row">
+            <div class="form-group  col-md-8">
+              <input type = "text"  class="form-control" name="Id" [(ngModel)]="Id" placeholder="User Id" >
+           
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group  col-md-8">
+              <input type = "text"  class="form-control" name="Username" [(ngModel)]="Username" placeholder="Username" >
+           
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group  col-md-8">
+              <input type = "text"  class="form-control" name="Title" [(ngModel)]="Title"  placeholder="Title" >
+          
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group  col-md-8">
+              <input type = "text"  class="form-control" name="Fname"  [(ngModel)]="Fname" placeholder="First Name" >
+           
+            </div>
+          </div>
+    
+          <div class="form-row">
+            <div class="form-group  col-md-8">
+              <input type = "text"  class="form-control" name="Lname" [(ngModel)]="Lname" placeholder="Surname" >
+           
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group  col-md-8">
+              <input type = "text"  class="form-control" name="Email" [(ngModel)]="Email" placeholder="Email" >
+            
+            </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group  col-md-8">
+                <input type = "text"  class="form-control" name="Password" [(ngModel)]="Password"  placeholder="Password" >
+             
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group  col-md-8">
+                  <input type = "text"  class="form-control" name="Password Hash" [(ngModel)]="PasswordHash" placeholder="Password Hash" >
+               
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group  col-md-8">
+                  <input type = "text"  class="form-control" name="Security Stamp" [(ngModel)]="SecurityStamp"  placeholder="Security Stamp" >
+                
+                </div>
+              </div>
+  
+       
+  
+  
+          <div class =" form-row">
+            <div class="form-group  col-md-8">
+              <button type="submit" class="btn btn-lg btn-block btn-info">Update
+                 </button> 
+          </div>
+  
+      </div>
+    </div>
+    
+  </form>
+
+  
+  

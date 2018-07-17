@@ -1,0 +1,51 @@
+
+
+<div class="jumbotron"  >
+    <h1 class="display-5">Sign in</h1>
+  </div>
+
+<h1>Sign in & book <i class="fas fa-sign-in-alt"></i></h1>
+<hr/>
+
+  <div class="row">
+    <div class="col-md-6">
+  
+     <router-outlet></router-outlet>
+      
+    </div>
+  </div>
+
+<div *ngIf=" isLoginError" class="red-text centre error-message">
+  <i class="material-icons">error</i> incorrect Username Or Password
+</div>
+
+<form class="Trav-form" #LogInForm="ngForm" (ngSubmit)="onSubmit(Username.value,Password.value)" >
+  <div class=" container" style="text-align : centre">
+
+ <label>Username</label>
+    <div class="form-row">
+        <div class="form-group  col-md-8">
+          <input id="username" class="form-control" name="Username" #Username="ngModel" ngModel placeholder="Username" required>
+          <div class="validation-error" *ngIf = " Username.invalid && Username.touched">Required</div> 
+        </div>
+    </div>
+
+    <label >Password</label>
+      <div class="form-row">
+          <div class="form-group  col-md-8">
+            <input id="password" class="form-control" name="Password" #Password="ngModel" ngModel placeholder="Password" required>
+            <div class="validation-error" *ngIf = " Password.invalid && Password.touched">Required</div>
+          </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group  col-md-8">
+          <button type="submit"  [disabled] = "!LogInForm.form.valid" class="btn btn-lg btn-block btn-info"  >Sign in</button>
+        </div>  
+      </div>
+
+
+  </div>
+</form> 
+
+

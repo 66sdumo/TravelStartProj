@@ -1,0 +1,10 @@
+.jumbotron
+{
+  background-color :whitesmoke;
+  background-image:  url(assets/edit4.jpg!d);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size:  100%;
+   color:rgb(33, 187, 243);
+    text-align: center;
+}

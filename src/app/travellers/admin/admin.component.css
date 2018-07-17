@@ -1,0 +1,9 @@
+.jumbotron
+{
+  background-color :whitesmoke;
+  background-image:  url(assets/panel2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:  100%;
+  
+}
