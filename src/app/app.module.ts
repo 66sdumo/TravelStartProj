@@ -19,9 +19,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './travellers/home/home.component';
 import { FlightSearchFilterPipe } from './travellers/home/FlightSearch-Pipe';
 import { ClickOutsideDirective } from './travellers/home/flightSearchDirective';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { DatePickerComponent } from './travellers/date-picker/date-picker.component';
-import { DatePicker2Component } from './travellers/date-picker2/date-picker2.component';
+
+
+
+
+
 import { HotelComponent } from './travellers/hotel/hotel.component';
 import { CarComponent } from './travellers/car/car.component';
 import { FlightViewComponent } from './travellers/home/flight-view/flight-view.component';
@@ -33,8 +35,9 @@ import { RoomviewComponent } from './travellers/hotel/roomview/roomview.componen
 import { AdminComponent } from './travellers/admin/admin.component';
 import { AuthGuard } from './travellers/Auth/auth.guard';
 import { ProfileComponent } from './travellers/profile/profile.component';
-import { EmailComponent } from './travellers/email/email.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RoomDetailsComponent } from './travellers/hotel/room-details/room-details.component';
+import { NgbdDatepickerPopupComponent } from './travellers/ngbd-datepicker-popup/ngbd-datepicker-popup.component';
 
 
 const appRoutes: Routes = [
@@ -111,8 +114,7 @@ const appRoutes: Routes = [
     HomeComponent,
     FlightSearchFilterPipe,
     ClickOutsideDirective,
-    DatePickerComponent,
-    DatePicker2Component,
+   
     HotelComponent,
     CarComponent,
     FlightViewComponent,
@@ -123,8 +125,8 @@ const appRoutes: Routes = [
     RoomviewComponent,
     AdminComponent,
     ProfileComponent,
-    EmailComponent,
-    RoomDetailsComponent
+    RoomDetailsComponent,
+    NgbdDatepickerPopupComponent
   
 
   ],
@@ -134,11 +136,10 @@ const appRoutes: Routes = [
     HttpModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule.forRoot(),  
+    NgbModule.forRoot(),
     ToastrModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule
-   
   
   ],
   

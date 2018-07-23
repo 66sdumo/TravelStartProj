@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { Flight } from '../../Shared/flight.model';
 import { Input } from '@angular/compiler/src/core';
 import { Seat } from '../../Shared/seat.model';
-
+import {Profile} from '../../Shared/profile.model';
 
 
 @Component({
@@ -35,6 +35,10 @@ export class TravellerInfoComponent implements OnInit {
   numTrav : any;
   counter : any[];
 
+TravDetails =new Array();
+
+count = 0;
+                        
 
 EmailTitle: any;
 EmailFname: any;
@@ -74,25 +78,29 @@ returnId;
 
 emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
+RefNo;
+
+
+userid1 : Profile;
+depFlightId : Flight;
+retFlightId : Flight;
+NumTrav;
+
 
   constructor(private detailservice : DetailsService,private travellerservice :TravellerService, private toastr : ToastrService, private router : Router) { }
 
   
 
   ngOnInit() {
+
+
     this.resetForm();
     this.reset();
 
     this.flytDep= JSON.parse(localStorage.getItem('selectedDep'));
-  //  console.log(this.flytDep);
-    
-
     this.retFlyt= JSON.parse(localStorage.getItem('selectedRet'));
-  // console.log(this.retFlyt);
-   
     this.tot= JSON.parse(localStorage.getItem('totalAmount'));
-   // alert(this.tot);
-   // console.log(this.tot);
+ 
 
 
     this.numTrav =localStorage.getItem('noTravellers');
@@ -104,13 +112,12 @@ emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
      this.uname = localStorage.getItem('Uname');
     // alert(this.uname);
-
      this.travellerservice.userList(this.uname);
 
      this.userId = JSON.parse(localStorage.getItem('profile'));
-      //console.log(localStorage.getItem('profile'));
+     console.log(localStorage.getItem('profile'));
 
-            if (this.userId == null )
+            if ( localStorage.getItem('profile') == null )
             {
               window.location.reload();
             }
@@ -120,6 +127,14 @@ emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     // console.log(this.userId[0].UserName);
      this.IdTrav = this.userId[0].Id;
      this.IdCntct =this.userId[0].Id;
+
+
+    /////Record
+     this.userid1=JSON.parse( localStorage.getItem('profile'));
+     this.depFlightId = JSON.parse(localStorage.getItem('selectedDep'));
+     this.retFlightId = JSON.parse(localStorage.getItem('selectedRet'));
+     this.NumTrav = localStorage.getItem('noTravellers');
+     this.RefNo = localStorage.getItem('RefNo');
 
     }
 
@@ -155,11 +170,22 @@ emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     }
 
 
-  onSubmit(form : NgForm)
+  onSubmit(form : NgForm )
   {
+
+
     this.detailservice.postDetails(form.value)
     .subscribe(data  =>{
-    
+ 
+      this.TravDetails.push(',Traveller '+ ++this.count+',' +this.detailservice.trav.Title+' '+this.detailservice.trav.Surname +' '+this.detailservice.trav.Fname+' '+this.detailservice.trav.Email);
+
+     
+
+        localStorage.setItem('TravDetails',JSON.stringify(this.TravDetails));
+       
+      // console.log( localStorage.getItem('TravDetails'));
+
+
         this.resetForm(form);
       this.toastr.success('Successful','Travellers Details');
     
@@ -202,7 +228,9 @@ emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
      
       this.uname = localStorage.getItem('Uname');
   
-     this.travellerservice.userList(this.uname);
+       this.travellerservice.userList(this.uname);
+
+       this.detailservice.getRef();
 
 
      this.ProfileObj = JSON.parse(localStorage.getItem('profile'));
@@ -219,11 +247,26 @@ emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
          if(this.toastr.success)
          {
            this.detailservice.postUSerFlight(this.userid,this.returnId)
-       .subscribe(data => {
-        
-         this.toastr.success('Successful','Return Flight');
-      
-       });
+             .subscribe(data => {
+              this.toastr.success('Successful','Return Flight');
+              });
+
+              /////Record
+              var body = {
+    
+                userId :this.userid1[0].Id,
+                deptFlightId : this.depFlightId.FlightId,
+                retFlightId : this.retFlightId.FlightId,
+                NumTrav :this.NumTrav,
+                Ref : this.RefNo
+               }
+          
+               this.detailservice.postRecord(body)
+               .subscribe(data => {
+               
+                this.toastr.success('Successful','Record');
+             
+              });
            
          }
       
@@ -250,9 +293,7 @@ emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     localStorage.setItem('ES', JSON.stringify(this.EmailSurname)) ;
     localStorage.setItem('EE', JSON.stringify(this.Emailemail)) ;
     
-   /* alert(localStorage.getItem('profile'));
-    alert(localStorage.getItem('returnId'));
-    alert(localStorage.getItem('departId'));*/
+
 
     this.ProfileObj = JSON.parse(localStorage.getItem('profile'));
     this.userid = this.ProfileObj[0].Id;
@@ -282,6 +323,7 @@ emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     
     
   }
+
 
 
 

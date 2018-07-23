@@ -20,10 +20,13 @@
               <option   *ngFor = "let airportD of travellerservice.airportList " [ngValue]="airportD"> {{airportD.airportName}}  </option>    
             </select>
           </div>
+ 
+
+     
          
-          <div class="form-group  col-md-6">
+         <div class="form-group  col-md-6">
               <label>Choose Departure Date</label>
-           <!-- <div class="form-control">-->
+            
                 <div class="input-group">
                     <input id="deptDate" class="form-control" placeholder="Choose departure date"
                            name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
@@ -32,9 +35,15 @@
                         <i class="far fa-calendar-alt"></i>
                       </button>
                     </div>
-                 <!-- </div>  -->
+               
               </div>
             </div>
+
+
+
+            
+              
+  
                
            
         </div>
@@ -49,12 +58,12 @@
             </select>
         </div>
         
-        
+   
             
        
       <div class="form-group  col-md-6">
           <label>Choose Return Date</label>
-      <!--  <div class="form-control"> -->
+    
           <div class="input-group">
             <input  id="rturnDate"  class="form-control" placeholder="Choose return date"
                    name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker">
@@ -63,9 +72,11 @@
                 <i class="far fa-calendar-alt"></i>
               </button>
             </div>
-          </div>
+          
         </div>
-    <!--  </div>-->
+      </div>
+
+
       </div>
       <h2>Travellers  <i class="fas fa-users"></i></h2>
         <hr/>
@@ -82,7 +93,7 @@
       <hr/>
 
      
-
+    
   
         
         <button [disabled]="!fsearch.valid" type="submit"  class="btn btn-lg btn-block btn-info" >Search</button>
@@ -98,3 +109,54 @@
       
     </div>
   </div>
+
+
+
+
+
+       
+       <!--  
+            <div class="form-group  col-md-8">
+              <label for="rturnDate">Return date</label>
+          
+                <input id="rturnDate" name="rturnDate"  [(ngModel)]="rturnDate" class="form-control" type="date"  placeholder="Date Of Return" required >
+          
+            </div>
+       
+  
+        <div class="form-group  col-md-6">
+            <label>Choose Departure Date</label>
+        
+              <div class="input-group">
+                <input id="rturnDate"  class="form-control" placeholder="yyyy-mm-dd"
+                       name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-lg btn-block btn-info" (click)="d2.toggle()" type="button">
+                      <i class="far fa-calendar-alt"></i>
+                  </button>
+                </div>
+              </div>
+            
+            </div>-->
+
+               <!--         <div class="form-group  col-md-6">
+                <label>Choose Departure Date</label>
+            
+                  <div class="input-group">
+                    <input id="deptDate" class="form-control" placeholder="yyyy-mm-dd"
+                           name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-lg btn-block btn-info" (click)="d.toggle()" type="button">
+                          <i class="far fa-calendar-alt"></i>
+                      </button>
+                    </div>
+                  </div>
+                
+                </div>-->
+
+                  <!--   <div class="form-group  col-md-8">
+              <label for="deptDate">Return date</label>
+          
+                <input id="deptDate" name="deptDate"   [(ngModel)]="deptDate" class="form-control" type="date"  placeholder="Date Of Return" required >
+             
+            </div>-->

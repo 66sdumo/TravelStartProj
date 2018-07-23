@@ -30,6 +30,8 @@ FlightList : Flight[];
 getFlight : Flight;
 airportList : Airport[];
 
+admin : Flight;
+
 flightResult : Flight;
 viewresult :Flight[];
 
@@ -59,6 +61,13 @@ const body = {
   var reqheader = new HttpHeaders({'No-Auth': 'True'});
   return this.http.post(this.rootUrl + '/api/User/Register',body);
 };
+
+
+
+
+
+
+
 
 getAllRoles()
 {
@@ -156,8 +165,14 @@ searchFlight(dept,deptDate)
   }).toPromise().then(x => {
     this.viewresult = x;
     localStorage.setItem('viewresult',JSON.stringify(this.viewresult));
+    alert(localStorage.getItem('viewresult'));
   })
 }
+
+
+
+
+
 
 searchReturn(rturn,rturnDate)
 {
@@ -168,6 +183,7 @@ searchReturn(rturn,rturnDate)
   }).toPromise().then(x => {
     this.returnFlight = x;
     localStorage.setItem('returnFlight',JSON.stringify(this.returnFlight));
+    alert(localStorage.getItem('returnFlight'));
   })
 }
 
@@ -200,5 +216,4 @@ getSeat(sideNo)
 
 
 }
-
 

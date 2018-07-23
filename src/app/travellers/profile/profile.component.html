@@ -34,7 +34,7 @@
           <div class="form-row">
             <div class="form-group  col-md-8">
               <label>Username</label>
-              <input type = "text"  class="form-control" name="Username" [(ngModel)]="claims.Username"  placeholder="Username" >
+              <input type = "text"  class="form-control" name="Username" [(ngModel)]="prof[0].UserName"  placeholder="Username" >
             <!--  <div class="validation-error" *ngIf = " Username.invalid && Username.touched">Required</div> -->
             </div>
           </div>
@@ -42,7 +42,7 @@
           <div class="form-row">
             <div class="form-group  col-md-8">
                 <label>Title</label>
-              <input type = "text"  class="form-control" name="Title" [(ngModel)]="claims.Title" placeholder="Title" >
+              <input type = "text"  class="form-control" name="Title" [(ngModel)]="prof[0].Title" placeholder="Title" >
             <!--  <div class="validation-error" *ngIf = " Title.invalid && Title.touched">Required</div>-->
             </div>
           </div>
@@ -50,7 +50,7 @@
           <div class="form-row">
             <div class="form-group  col-md-8">
                 <label>First Name</label>
-              <input type = "text"  class="form-control" name="Fname" [(ngModel)]="claims.Fname" placeholder="First Name" >
+              <input type = "text"  class="form-control" name="Fname" [(ngModel)]="prof[0].Fname" placeholder="First Name" >
              <!-- <div class="validation-error" *ngIf = " Fname.invalid && Fname.touched">Required</div> -->
             </div>
           </div>
@@ -58,7 +58,7 @@
           <div class="form-row">
             <div class="form-group  col-md-8">
                 <label>Last Name</label>
-              <input type = "text"  class="form-control" name="Lname" [(ngModel)]="claims.Lname" placeholder="Surname" >
+              <input type = "text"  class="form-control" name="Lname" [(ngModel)]="prof[0].Lname" placeholder="Surname" >
              <!-- <div class="validation-error" *ngIf = " Lname.invalid && Lname.touched">Required</div> -->
             </div>
           </div>
@@ -66,14 +66,14 @@
           <div class="form-row">
             <div class="form-group  col-md-8">
                 <label>Email</label>
-              <input type = "text"  class="form-control" name="Email" [(ngModel)]="claims.Email" placeholder="Email" >
+              <input type = "text"  class="form-control" name="Email" [(ngModel)]="prof[0].Email" placeholder="Email" >
              <!-- <div class="validation-error" *ngIf = " Email.invalid && Email.touched">Required</div>-->
             </div>
           </div>
           <div class="form-row">
               <div class="form-group  col-md-8">
                   <label>Password</label>
-                <input type = "text"  class="form-control" name="Password" [(ngModel)]="profile[0].Password"  placeholder="Password" >
+                <input type = "text"  class="form-control" name="Password" [(ngModel)]="prof[0].Password"  placeholder="Password" >
               <!--  <div class="validation-error" *ngIf = " Username.invalid && Username.touched">Required</div> -->
               </div>
             </div>

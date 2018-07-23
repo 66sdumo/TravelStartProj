@@ -59,6 +59,7 @@ export class ProfileComponent implements OnInit {
   console.log(this.prof[0].Email);
   console.log(this.prof[0].Lname);
   console.log(this.prof[0].UserName);
+  
 
 
   }

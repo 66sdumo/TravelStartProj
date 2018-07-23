@@ -5,6 +5,7 @@ import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
 import { TravellerService } from '../../Shared/traveller.service';
 import {Flight} from '../../Shared/flight.model';
+import { Local } from 'protractor/built/driverProviders';
 
 @Component({
   selector: 'app-payment',
@@ -17,6 +18,7 @@ export class PaymentComponent implements OnInit {
   lname :any =JSON.parse(localStorage.getItem('ES'));
   fname :any =JSON.parse(localStorage.getItem('EF'));
   email :any =JSON.parse(localStorage.getItem('EE'));
+  RefNo;
 
 depart: Flight = new Flight;
 
@@ -25,6 +27,8 @@ return : Flight = new Flight;
 type;
 
 userId;
+
+TravDetails = new Array();
 
   constructor( private detailservice : DetailsService, private toastr : ToastrService, private router : Router, travellerservice : TravellerService ) { }
 
@@ -35,6 +39,10 @@ userId;
     this.return = JSON.parse(localStorage.getItem('selectedRet'));
   
     this.userId = JSON.parse(localStorage.getItem('profile'));
+
+    this.TravDetails.push( JSON.parse( localStorage.getItem('TravDetails')));
+  // console.log(this.TravDetails);
+      console.log(localStorage.getItem('RefNo'));
   }
 
 
@@ -65,15 +73,18 @@ userId;
       this.toastr.success('Recieved','Check email.!');
     this.router.navigate(['travellers/home/payment'])
     
+    
+    
+    
     });
    
   }
 
   onClick()
   {
- 
-   this.detailservice.getEmail(this.title,this.fname,this.lname,this.email,this.depart.Airport,this.depart.Airline,this.depart.Date,this.depart.Time,this.depart.Class
-    ,this.return.Airport,this.return.Airline,this.return.Date,this.return.Time,this.return.Class); 
+   this.RefNo = localStorage.getItem('RefNo');
+   this.detailservice.getEmail(this.TravDetails,this.title,this.fname,this.lname,this.email,this.depart.Airport,this.depart.Airline,this.depart.Date,this.depart.Time,this.depart.Class,this.return.Airport,this.return.Airline,this.return.Date,this.return.Time,this.return.Class,this.RefNo);
+    console.log(this.TravDetails);
     console.log(this.depart.Airport)
     console.log(this.depart.Airline)
     console.log(this.depart.Time)

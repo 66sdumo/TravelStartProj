@@ -7,6 +7,7 @@ import {ReactiveFormsModule } from '@angular/forms';
 import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
 import { count } from 'rxjs/operators';
+import { NgbdDatepickerPopupComponent } from '../../travellers/ngbd-datepicker-popup/ngbd-datepicker-popup.component'
 
 @Component({
   selector: 'app-home',
@@ -54,7 +55,7 @@ export class HomeComponent implements OnInit {
     
     console.log(deptPort.airportName)
     this.dept = deptPort.airportName;
-   // alert(this.dept);
+  // alert(this.dept);
     localStorage.setItem('departId',JSON.stringify(deptPort.airportId));
    // alert(localStorage.getItem('departId'));
 
@@ -77,7 +78,7 @@ export class HomeComponent implements OnInit {
     
       this.router.navigate(['travellers/home/flight-view'])
       
-    
+    window.location.reload();
   
   }
 

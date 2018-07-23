@@ -11,7 +11,7 @@ import {PaymentComponent} from '../../travellers/home/payment/payment.component'
 import {Profile} from '../Shared/profile.model';
 import {Traveller} from '../Shared/traveller.model';
 import {Flight} from '../Shared/flight.model';
-
+import { Record} from '../Shared/record.model';
 
 @Injectable()
 export class DetailsService {
@@ -25,6 +25,9 @@ export class DetailsService {
   travcontacts : Contacts;
 
   payFlight : Flightpayment;
+
+  store: any[];
+
 
 
   readonly rootUrl ='http://localhost:52936/';
@@ -71,19 +74,23 @@ export class DetailsService {
   };
 
   
-  getEmail(title,fname,lname,email,Airport,Airline,Date,Time,class1,Airport2,Airline2,Date2,Time2,class2)
+  getEmail(TravDetails: any[],title,fname,lname,email,Airport,Airline,Date,Time,class1,Airport2,Airline2,Date2,Time2,class2,Ref)
   {
 
-    var data= "title="+title+"&fname="+fname+"&lname="+lname+"&email="+email+"&Airport="+Airport+"&Airline="+Airline+"&date="+Date+"&time="+Time+"&class1="+class1
-                +"&Airport2="+Airport2+"&Airline2="+Airline2+"&date2="+Date2+"&time2="+Time2+"&class2="+class2;
+    var data= "TravDetails="+TravDetails+"&title="+title+"&fname="+fname+"&lname="+lname+"&email="+email+"&Airport="+Airport+"&Airline="+Airline+"&date="+Date+"&time="+Time+"&class1="+class1
+                +"&Airport2="+Airport2+"&Airline2="+Airline2+"&date2="+Date2+"&time2="+Time2+"&class2="+class2+"&Ref="+Ref;
     return this.http.get(this.rootUrl+'api/Email?'+data)
-    .map((data : Response ) => {
+    .map(
+      (Response ) => Response.json()
       
-    }).toPromise().then(x => {
+    ).subscribe(
+      (data) => console.log(data)
     
-    })
+    )
 
   };
+
+
 
 
     putUser(id, prof)
@@ -133,5 +140,48 @@ export class DetailsService {
 
 
       }
+
+      postFlight(body)
+      {
+
+          var headerOptions = new Headers({'Content-Type': 'application/json'});
+          var requestOptions = new RequestOptions({method : RequestMethod.Post,headers : headerOptions});
+          return this.http.post(this.rootUrl +'api/Flights',body,requestOptions).map(x => x.json());
+      
+      
+      };
+
+
+
+      getRef()
+      {
+    
+        return this.http.get(this.rootUrl+'api/Ref')
+        .map(
+          (Response ) => Response.json()
+          
+        ).subscribe(
+          (data) =>
+          localStorage.setItem('RefNo',(data))
+       
+        )
+
+      }
+
+
+      postRecord(body)
+      {
+
+      var headerOptions = new Headers({'Content-Type': 'application/json'});
+      var requestOptions = new RequestOptions({method : RequestMethod.Post,headers : headerOptions});
+      return this.http.post(this.rootUrl + 'api/Records',body,requestOptions).map(x => x.json());
+  
+
+      }
+      
+
+        
+          
+
   
 }

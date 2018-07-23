@@ -33,7 +33,7 @@
     <label >Password</label>
       <div class="form-row">
           <div class="form-group  col-md-8">
-            <input id="password" class="form-control" name="Password" #Password="ngModel" ngModel placeholder="Password" required>
+            <input id="password" type="password" class="form-control" name="Password" #Password="ngModel" ngModel placeholder="Password" required>
             <div class="validation-error" *ngIf = " Password.invalid && Password.touched">Required</div>
           </div>
       </div>

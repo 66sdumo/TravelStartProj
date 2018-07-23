@@ -6,6 +6,9 @@ import {DetailsService} from '../Shared/details.service'
 import { Profile } from '../Shared/profile.model';
 import { NgForm } from '@angular/forms';
 import {ToastrService, Toast} from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { Flight } from '../Shared/flight.model';
+
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +16,9 @@ import {ToastrService, Toast} from 'ngx-toastr';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
+  time = {hour: 13, minute: 30};
+ 
+admin : Flight;
   user;
   name;
   userId;
@@ -29,11 +34,21 @@ export class AdminComponent implements OnInit {
   Title
   Password 
 
+  viewUser : boolean = false;
+  viewFlight : boolean = true;
 
-  constructor(private travellerservice : TravellerService, private detailservice : DetailsService, private toastr : ToastrService) { }
+  date;
+
+
+  constructor(private travellerservice : TravellerService, private detailservice : DetailsService, private toastr : ToastrService, private router : Router) { }
 
   ngOnInit() {
+
+
+    this.resetForm();
     
+    this.travellerservice.getAirportList();
+  
   }
 
 
@@ -89,5 +104,69 @@ export class AdminComponent implements OnInit {
       })
     }
     }
+
+    onUsers()
+    {
+      
+     
+        if(this.viewFlight = true)
+        {
+          this.viewFlight=false;
+          this.viewUser = true;
+        }
+        
+    }
+
+    onAddFlight()
+    {
+   
+      if(this.viewUser=true)
+      {
+        this.viewUser= false;
+        this.viewFlight = true
+      }
+    
+    }
+
+
+    resetForm(form? : NgForm){
+      if(form != null)
+        form.reset();
+        this.admin ={
+          FlightId : null,
+          Airport : '',
+          Airline :'',
+          Time :'',
+          Price :null,
+          Date :'',
+          Class :''
+        }
+       
+      }
+
+    onFlight(form : NgForm){
+      var body = {
+
+        Airport :  (document.getElementById('airport') as HTMLInputElement).value,
+        Airline :  (document.getElementById('airline') as HTMLInputElement).value,
+        Time :  (document.getElementById('time') as HTMLInputElement).value,
+        Price : (document.getElementById('price') as HTMLInputElement).value,
+        Date : (document.getElementById('date') as HTMLInputElement).value,
+        Class : (document.getElementById('class') as HTMLInputElement).value
+
+      }
+    
+      
+     this.detailservice.postFlight(body)
+     .subscribe(data =>{
+       
+       this.resetForm(form);
+       this.toastr.success('Flight Added');
+      
+      this.date = this.admin.Date;
+      
+       
+     });
+   }
 
 }

@@ -5,17 +5,41 @@
 </div>
 
 
+<form>
 
-<form class="prof-form">
+<div class="form-row">
+  <div class="form-group  col-md-6">
+    <h2>Click for Users</h2>
+    <button type="submit" class="btn btn-lg btn-block btn-info" (click)="onUsers()" >Users <i class="far fa-user"></i>
+       </button> 
+  </div>
+
+  <div class="form-group  col-md-6">
+    <h2>Click To Add Flight</h2>
+  <button type="submit" class="btn btn-lg btn-block btn-info" (click)="onAddFlight()" >Add Flight <i class="far fa-paper-plane"></i>
+     </button> 
+  </div>
+</div>
+<hr/>
+<hr/>
+
+</form>
+
+<form class="prof-form"  *ngIf ="viewUser">
     <div class=" container" style="text-align : centre">
+
+      <h1>Find, Update Or Delete </h1>
+      <hr/>
      
         <div class="form-row">
             <div class="form-group  col-md-6">
+                <label >Find User</label>
               <input id="name" type = "text"  class="form-control" name="username"   placeholder="Username" >
            
             </div>
 
              <div class="form-group  col-md-6">
+                <label >Copy user id and delete</label>
                   <input id="userId" type = "text"  class="form-control" name="UserId"   placeholder="Enter User Id" >
                 
              </div>
@@ -23,32 +47,27 @@
 
         <div class =" form-row">
             <div class="form-group  col-md-6">
-              <button type="submit" class="btn btn-lg btn-block btn-info" (click)="onFind()">Find
+              
+              <button type="submit" class="btn btn-lg btn-block btn-info" (click)="onFind()">Find <i class="fas fa-search"></i>
                  </button> 
           </div>
 
           <div class="form-group  col-md-6">
-            <button type="submit" class="btn btn-lg btn-block btn-info" (click)="onDelete()">Delete
+            
+            <button type="submit" class="btn btn-lg btn-block btn-info" (click)="onDelete()">Delete <i class="far fa-trash-alt"></i>
                </button> 
         </div>
 
 
         </div>
-
-       
-
-       
-
-        
-
     </div>
    
     <hr class="separator">
 </form>
 
-<form class="userForm" #userForm= "ngForm" (ngSubmit)="onSubmit(userForm)" >
+<form class="userForm" #userForm= "ngForm"  *ngIf ="viewUser" (ngSubmit)="onSubmit(userForm)" >
     <div class=" container" style="text-align : centre">
-
+<h2>Update</h2>
         <div class="form-row">
             <div class="form-group  col-md-8">
               <input type = "text"  class="form-control" name="Id" [(ngModel)]="Id" placeholder="User Id" >
@@ -125,3 +144,84 @@
 
   
   
+
+  <form class="flightForm"  #flightForm= "ngForm"  *ngIf = "viewFlight" (ngSubmit)="onFlight(flightForm)" >
+    <div class=" container" style="text-align : centre">
+    <h1>Add flights <i class="fas fa-plane"></i></h1>
+        <div class="form-row">
+            <div class="form-group  col-md-6">
+                <label>Select Airport</label>
+                <select id="airport" class="form-control" name="Airport" [(ngModel)]="admin.Airport" > 
+                  <option>Select Airport</option>
+                  <option   *ngFor = "let airportD of travellerservice.airportList "> {{airportD.airportName}}  </option>    
+                </select>
+           
+           
+            </div>
+         
+            <div class="form-group  col-md-6">
+                <label>Airline</label>
+              <input id="airline" type = "text"  class="form-control" name="Airline" [(ngModel)]="admin.Airline" placeholder="Airline" >
+           
+            </div>
+          </div>
+  
+          <div class="form-row">
+
+
+              <div class="form-group  col-md-6">
+                  <label>Set Date</label>
+               
+                    <div class="input-group">
+                        <input id="date" class="form-control" placeholder="Choose departure date"
+                               name="Dates" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                        <div class="input-group-append">
+                          <button class="btn btn-lg btn-block btn-info"  (click)="d.toggle()" type="button">
+                            <i class="far fa-calendar-alt"></i>
+                          </button>
+                        </div>
+                     
+                  </div>
+                </div>
+          
+            <div class="form-group  col-md-4">
+                <label>Set Time</label>
+              <input id="time" type = "time"  class="form-control" name="Time"  [(ngModel)]="admin.Time" placeholder="Time" >
+
+  
+            </div>
+          </div>
+    
+          <div class="form-row">
+
+            <div class="form-group  col-md-6">
+              Class
+              <select id="class" type = "text"  class="form-control" name="class" [(ngModel)]="admin.Class" placeholder="Class" > 
+                <option >First Class  </option>
+                <option > Business Class </option>
+                <option > Economy Class </option>   
+              </select>
+            </div>
+
+            <div class="form-group  col-md-4">
+              Enter the price per seat
+              <input id="price" type = "text"  class="form-control" name="Price" [(ngModel)]="admin.Price" placeholder="Amount P/Seat" >
+           
+            </div>
+
+            
+
+        </div>
+       
+  
+  
+          <div class =" form-row">
+            <div class="form-group  col-md-8">
+              <button type="submit" class="btn btn-lg btn-block btn-info">Update
+                 </button> 
+          </div>
+  
+      </div>
+    </div>
+    
+  </form>

@@ -35,13 +35,15 @@ save: any[] = new Array;
   ngOnInit() {
 
     this.returnFlight = JSON.parse(localStorage.getItem('returnFlight'));
+    alert(localStorage.getItem('returnFlight'))
 
     this.viewresult = JSON.parse(localStorage.getItem('viewresult'));
+    alert(localStorage.getItem('viewresult'))
+
+
     this.numTrav = localStorage.getItem('noTravellers');
     this.sits =JSON.parse( localStorage.getItem('Seats'));
     console.log(this.sits);
-
-    
   }
 
   
@@ -50,8 +52,6 @@ save: any[] = new Array;
     console.log(this.result);
     localStorage.setItem('selectedDep', JSON.stringify(this.result)); 
     console.log(localStorage.getItem('selectedDep'));
-   
-    
   }
 
   retSelect(selected){
@@ -59,8 +59,6 @@ save: any[] = new Array;
     console.log(this.selected);
     localStorage.setItem('selectedRet', JSON.stringify(this.selected));
     console.log(localStorage.getItem('selectedRet'));
-
-    
   }
 
 
@@ -79,11 +77,12 @@ save: any[] = new Array;
    onContinue()
    {
     this.router.navigate(['travellers/home/traveller-info'])
+    window.location.reload();
    }
 
    onView()
    {
-    this.amnt =this.result.Price + this.selected.Price;
+    this.amnt =(this.result.Price + this.selected.Price)*this.numTrav;
   
     localStorage.setItem('totalAmount',JSON.stringify(this.amnt));
    // alert(localStorage.getItem('totalAmount'));
