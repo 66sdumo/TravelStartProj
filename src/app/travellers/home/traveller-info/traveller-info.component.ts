@@ -134,7 +134,8 @@ NumTrav;
      this.depFlightId = JSON.parse(localStorage.getItem('selectedDep'));
      this.retFlightId = JSON.parse(localStorage.getItem('selectedRet'));
      this.NumTrav = localStorage.getItem('noTravellers');
-     this.RefNo = localStorage.getItem('RefNo');
+    
+     this.detailservice.getRef();
 
     }
 
@@ -149,10 +150,6 @@ NumTrav;
     }
   }
 
-   
-    
-  
-    
 
     resetForm(form? : NgForm){
     if(form != null)
@@ -177,22 +174,16 @@ NumTrav;
     this.detailservice.postDetails(form.value)
     .subscribe(data  =>{
  
-      this.TravDetails.push(',Traveller '+ ++this.count+',' +this.detailservice.trav.Title+' '+this.detailservice.trav.Surname +' '+this.detailservice.trav.Fname+' '+this.detailservice.trav.Email);
-
-     
+        this.TravDetails.push(',Traveller '+ ++this.count+',' +this.detailservice.trav.Title+' '+this.detailservice.trav.Surname +' '+this.detailservice.trav.Fname+' '+this.detailservice.trav.Email);
 
         localStorage.setItem('TravDetails',JSON.stringify(this.TravDetails));
-       
-      // console.log( localStorage.getItem('TravDetails'));
-
-
+  
         this.resetForm(form);
-      this.toastr.success('Successful','Travellers Details');
+        this.toastr.success('Successful','Travellers Details');
     
     });
 
-    this.control++;
-   // console.log(this.control,this.range)
+    this.control++
     this.numTrav = this.numTrav - 1;
     if(this.control == this.range)
     {
@@ -225,54 +216,49 @@ NumTrav;
 
     if(this.toastr.success)
     {
-     
-      this.uname = localStorage.getItem('Uname');
-  
+       this.uname = localStorage.getItem('Uname');
        this.travellerservice.userList(this.uname);
 
-       this.detailservice.getRef();
+      
 
 
-     this.ProfileObj = JSON.parse(localStorage.getItem('profile'));
-     this.userid = this.ProfileObj[0].Id;
-     // alert(this.flytDep.FlightId)
+       this.ProfileObj = JSON.parse(localStorage.getItem('profile'));
+       this.userid = this.ProfileObj[0].Id;
        this.departId=this.flytDep.FlightId;
        this.returnId=this.retFlyt.FlightId;
 
        this.detailservice.postUSerFlight(this.userid,this.departId)
        .subscribe(data => {
-        
          this.toastr.success('Successful','Depart Flight');
-   
          if(this.toastr.success)
          {
            this.detailservice.postUSerFlight(this.userid,this.returnId)
              .subscribe(data => {
               this.toastr.success('Successful','Return Flight');
               });
-
-              /////Record
-              var body = {
-    
-                userId :this.userid1[0].Id,
-                deptFlightId : this.depFlightId.FlightId,
-                retFlightId : this.retFlightId.FlightId,
-                NumTrav :this.NumTrav,
-                Ref : this.RefNo
-               }
-          
-               this.detailservice.postRecord(body)
-               .subscribe(data => {
-               
-                this.toastr.success('Successful','Record');
-             
-              });
-           
          }
-      
        });
        
+          /////Record
 
+          this.RefNo = localStorage.getItem('RefNo');
+          alert(this.RefNo)
+
+          var body = {
+              
+            userId :this.userid1[0].Id,
+            deptFlightId : this.depFlightId.FlightId,
+            retFlightId : this.retFlightId.FlightId,
+            NumTrav :this.NumTrav,
+            Ref : this.RefNo
+          }
+
+          this.detailservice.postRecord(body)
+          .subscribe(data => {
+          
+            this.toastr.success('Successful','Record');
+
+          });
 
     }
     
@@ -321,7 +307,7 @@ NumTrav;
     
 
     
-    
+
   }
 
 

@@ -35,12 +35,9 @@ save: any[] = new Array;
   ngOnInit() {
 
     this.returnFlight = JSON.parse(localStorage.getItem('returnFlight'));
-    alert(localStorage.getItem('returnFlight'))
 
     this.viewresult = JSON.parse(localStorage.getItem('viewresult'));
-    alert(localStorage.getItem('viewresult'))
-
-
+ 
     this.numTrav = localStorage.getItem('noTravellers');
     this.sits =JSON.parse( localStorage.getItem('Seats'));
     console.log(this.sits);
@@ -83,11 +80,8 @@ save: any[] = new Array;
    onView()
    {
     this.amnt =(this.result.Price + this.selected.Price)*this.numTrav;
-  
     localStorage.setItem('totalAmount',JSON.stringify(this.amnt));
-   // alert(localStorage.getItem('totalAmount'));
      this.view =true;
-     
    }
 
 }
