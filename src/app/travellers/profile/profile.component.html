@@ -21,12 +21,12 @@
 
 
 <form class="prof-form" #profForm="ngForm" (ngSubmit)="onSubmit(profForm)">
-    <div class=" container" style="text-align : centre">
+    <div class="container" style="text-align : centre">
 
         <div class="form-row">
             <div class="form-group  col-md-8">
-              User Id
-              <input type = "text"  class="form-control" name="Id" [(ngModel)]="profile[0].Id"  placeholder="User Id" >
+          
+              <input type = "hidden"  class="form-control" name="Id" [(ngModel)]="profile[0].Id"  placeholder="User Id" >
             <!--  <div class="validation-error" *ngIf = " Username.invalid && Username.touched">Required</div> -->
             </div>
           </div>
